@@ -13,7 +13,7 @@ const request = require("request");
 module.exports = (() => {
     const config = {
         info: {
-            name: "Факт дня",
+            name: "Факт  дня",
             authors: [
                 {
                     name: "Nyx",
