@@ -1,14 +1,13 @@
 /**
- * @name ФактДня
+ * @name Факт_Дня
  * @author MjKey (RU), Nyx - Origingal version (EN)
  * @version 1.0.0
  * @license MIT
  * @description Бесполензный факт каждый день! Когда заходите в Дискорд.
  * @website https://github.com/MjKey
- * @source https://raw.githubusercontent.com/MjKey/BetterDiscord/master/plugins/FactOfTheDay/FactOfTheDay.plugin.js
- * @updateUrl https://raw.githubusercontent.com/MjKey/BetterDiscord/master/plugins/FactOfTheDay/FactOfTheDay.plugin.js
+ * @source https://raw.githubusercontent.com/MjKey/BetterDiscord/main/plugins/ФактДня/ФактДня.plugin.js
+ * @updateUrl https://raw.githubusercontent.com/MjKey/BetterDiscord/main/plugins/ФактДня/ФактДня.plugin.js
  */
-
 
 const request = require("request");
 module.exports = (() => {
@@ -26,10 +25,10 @@ module.exports = (() => {
                 }
             ],
             version: "1.0.0",
-            description: "Бесполензный факт каждый день! Когда заходите в Дискорд"
+            description: "Бесполензный факт каждый день, когда заходите в Дискорд!"
         },
-        github: "https://github.com/MjKey/BetterDiscord/blob/master/plugins/FactOfTheDay/FactOfTheDay.plugin.js",
-        github_raw:"https://raw.githubusercontent.com/MjKey/BetterDiscord/master/plugins/FactOfTheDay/FactOfTheDay.plugin.js",
+        github: "https://github.com/MjKey/BetterDiscord/blob/main/plugins/ФактДня/ФактДня.plugin.js",
+        github_raw:"https://raw.githubusercontent.com/MjKey/BetterDiscord/main/plugins/ФактДня/ФактДня.plugin.js",
         main: "index.js",
     };
     return !global.ZeresPluginLibrary ? class {
@@ -72,9 +71,13 @@ module.exports = (() => {
                     onStart() {
                         request.get("https://uselessfacts.jsph.pl/today.json?language=en", (error, response, body) => {
                             request.get(`https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&tl=ru&hl=ru&dt=t&dt=bd&dj=1&source=icon&tk=467103.467103&q=${JSON.parse(body).text}`, (error, response, body) => {
-                                Modals.showAlertModal(
+                                Modals.showConfirmationModal(
                                     "Факт дня",
-                                    JSON.parse(body)['sentences'][0].trans
+                                    JSON.parse(body)['sentences'][0].trans,
+                                    {
+                                        confirmText: "Круто!",
+                                        cancelText: "Хре"
+                                    }
                                 );
                             });
                         });
@@ -88,4 +91,3 @@ module.exports = (() => {
             return plugin(Plugin, Library);
         })(global.ZeresPluginLibrary.buildPlugin(config));
 })();
-
