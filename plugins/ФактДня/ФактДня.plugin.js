@@ -1,7 +1,7 @@
 /**
  * @name Факт_Дня
  * @author MjKey (RU), Nyx - Origingal version (EN)
- * @version 1.0.0
+ * @version 1.0.1
  * @license MIT
  * @description Бесполензный факт каждый день! Когда заходите в Дискорд.
  * @website https://github.com/MjKey
